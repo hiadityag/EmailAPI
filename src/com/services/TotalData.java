@@ -1,7 +1,7 @@
 package com.services;
 
 public class TotalData {
-	String email, pasword, sendEmail, Message;
+	String email, pasword, senderEmail, Message;
 	
 	public void setEmailPass(String email, String password)
 	{
@@ -12,7 +12,7 @@ public class TotalData {
 	public void setSenderMessage(String sendemail,String message)
 	{
 		this.Message=message;
-		this.sendEmail= sendemail;
+		this.senderEmail= sendemail;
 	}
 
 	public String getPasword() {
@@ -32,12 +32,12 @@ public class TotalData {
 	}
 
 	
-	public String getSendEmail() {
-		return sendEmail;
+	public String getSenderEmail() {
+		return senderEmail;
 	}
 
-	public void setSendEmail(String sendEmail) {
-		this.sendEmail = sendEmail;
+	public void setSenderEmail(String senderEmail) {
+		this.senderEmail = senderEmail;
 	}
 
 	public String getMessage() {
