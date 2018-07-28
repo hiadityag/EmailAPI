@@ -17,24 +17,28 @@ import com.services.TotalData;
 public class SendEmail extends HttpServlet {
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		TotalData td= new TotalData();
+		System.out.println(request.getParameter("EmailSend"));
+		System.out.println(request.getParameter("Message"));
+		
 		td.setSenderMessage(request.getParameter("EmailSend"), request.getParameter("Message"));
 		EmailService es= new EmailService();
-        String res	=	es.EmailSending(td.getEmail(),td.getPasword(),td.getSendEmail(),td.getMessage());
-		 if(res.equals("mailsent"))
-		 {
+      String str= 	es.sendmails(td.getEmail(),td.getPasword(),td.getSenderEmail(),td.getMessage());
+      System.out.println(str);
+		
+       	if(str.equals("mail sent"))
+       	{
 			 HttpSession hs=request.getSession();
-			 hs.setAttribute("result","Email Sent");
-			 RequestDispatcher rd=request.getRequestDispatcher("Reslt.jsp");
-			 rd.forward(request, response);
-					 
-		 }
-		 else
-		 {
-			 HttpSession hs=request.getSession();
-			 hs.setAttribute("result",res);
+			 hs.setAttribute("result",str);
 			 RequestDispatcher rd=request.getRequestDispatcher("Reslt.jsp");
 			 rd.forward(request, response); 
-		 }
+       	}
+       	else
+       	{
+       		HttpSession hs=request.getSession();
+			 hs.setAttribute("result",str);
+			 RequestDispatcher rd=request.getRequestDispatcher("Reslt.jsp");
+			 rd.forward(request, response); 
+       	}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
